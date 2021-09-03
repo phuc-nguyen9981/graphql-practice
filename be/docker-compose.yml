@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:13.3-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+  server-be:
+    build: .
+    image: graphql-simple-proj
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
